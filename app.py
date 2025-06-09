@@ -1,16 +1,16 @@
 import os
-import openai
 import streamlit as st
+from openai import OpenAI
+
+# Inicializar cliente OpenAI (nuevo cliente)
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Cargar datos de contexto
 with open("cltiene_data.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
-# Clave API
-openai.api_key = os.getenv("OPENAI_API_KEY")
-
-# Interfaz de usuario
-st.set_page_config(page_title="Agente CL Tiene", layout="centered")
+# Interfaz
+st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 st.title("🤖 Agente Inteligente CL Tiene")
 st.write("Consulta sobre productos y servicios de CL Tiene")
 
@@ -28,9 +28,8 @@ if prompt:
     st.chat_message("user").markdown(prompt)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Preparar prompt con contexto
     full_prompt = f"""
-Eres un agente de atención virtual de CL Tiene. Usa exclusivamente la información del siguiente contexto para responder:
+Eres un agente de atención virtual de CL Tiene. Usa exclusivamente la información del siguiente contexto para responder preguntas de usuarios:
 
 {contexto}
 
@@ -39,13 +38,13 @@ Respuesta:
 """
 
     try:
-        response = openai.ChatCompletion.create(
+        response = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": full_prompt}],
             temperature=0.2,
             max_tokens=700
         )
-        answer = response["choices"][0]["message"]["content"]
+        answer = response.choices[0].message.content
     except Exception as e:
         answer = f"Error al generar respuesta: {e}"
 
