@@ -11,7 +11,7 @@ with open("cltiene_data.txt", "r", encoding="utf-8") as f:
 
 # Interfaz
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
-st.title("🤖 Agente Inteligente CL Tiene")
+st.title("Agente Inteligente CL Tiene")
 st.write("Consulta sobre productos y servicios de CL Tiene")
 
 # Historial
