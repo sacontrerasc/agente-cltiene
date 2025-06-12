@@ -5,10 +5,17 @@ from langchain_openai import OpenAIEmbeddings, OpenAI
 
 # Función para limpiar y dar formato a la respuesta
 def limpiar_texto(texto):
-    # Corrige formato de precios como "$33.900 a $406.800" -> "$33.900 – $406.800"
-    texto = re.sub(r'\$?(\d{2,3}\.\d{3})\s*(hasta|a|-)\s*\$?(\d{2,3}\.\d{3})', r'$\1 – $\3', texto)
-    texto = re.sub(r'\$(\d+)\s*a\s*\$(\d+)', r'$\1 – $\2', texto)
+    # Unifica saltos de línea
     texto = texto.replace("\n\n", "\n").replace("\n \n", "\n")
+
+    # Quita saltos entre números (cuando los precios se separan por error)
+    texto = re.sub(r'(\d)\n(\d)', r'\1\2', texto)
+    texto = re.sub(r'(\d)\n', r'\1', texto)
+    texto = re.sub(r'\n(\d)', r'\1', texto)
+
+    # Corrige formato de precios tipo "$33.900 hasta $406.800"
+    texto = re.sub(r'\$?\s?(\d{2,3}\.\d{3})\s*(hasta|a|-)\s*\$?\s?(\d{2,3}\.\d{3})', r'$\1 – $\3', texto)
+
     return texto
 
 # Cargar el índice FAISS
@@ -27,17 +34,21 @@ qa_chain = RetrievalQA.from_chain_type(
 # Pregunta del usuario (puedes cambiarla o usar input dinámico)
 pregunta = "¿Qué incluye el servicio CL Tiene Mascotas?"
 
-# Prompt estructurado para mejorar la respuesta
+# Prompt estructurado visualmente atractivo
 prompt = f"""
-Responde al usuario con base en el siguiente formato. Sé claro, preciso y usa viñetas en los ítems. Si no hay información suficiente, indícalo claramente.
+Estructura tu respuesta usando estas secciones y emojis. Sé claro, preciso y usa viñetas si es necesario. Si no hay información suficiente, indícalo.
 
-Servicio: [nombre del servicio]
-Descripción: [descripción corta]
-Incluye:
-- [lista de beneficios]
-Exclusiones:
-- [lista de exclusiones, si aplica]
-Valor: [valor en pesos COP con formato claro, por ejemplo: $69.900 – $609.900]
+📌 Información general:
+[Descripción clara del servicio]
+
+✅ Incluye:
+- [Lista de beneficios]
+
+❌ Exclusiones:
+- [Lista de exclusiones, si aplica]
+
+💵 Valor:
+[Precio con formato claro: $69.900 – $609.900]
 
 Pregunta del usuario: {pregunta}
 """
@@ -50,3 +61,4 @@ respuesta_limpia = limpiar_texto(respuesta)
 
 # Imprimir la respuesta limpia
 print(respuesta_limpia)
+
