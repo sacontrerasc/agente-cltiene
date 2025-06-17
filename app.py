@@ -8,11 +8,12 @@ from openai import OpenAI
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo fijo en toda la pantalla, incluyendo input
+# 🎨 Fondo fijo en toda la pantalla, incluyendo input (versión corregida)
 # ======================
 def set_background(image_path):
     with open(image_path, "rb") as f:
-        encoded = base64.b64encode(f.read()).decode()
+        data = f.read()
+        encoded = base64.b64encode(data).decode()
     st.markdown(
         f"""
         <style>
@@ -135,4 +136,3 @@ Respuesta:
 
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
-
