@@ -56,13 +56,21 @@ def set_layout(background_path, logo_path):
             color: white;
         }}
 
+        .centered-container {{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            margin-top: 2rem;
+        }}
+
         .chat-area {{
             background: rgba(255,255,255,0.85);
             padding: 2rem;
             border-radius: 20px;
             max-width: 700px;
-            margin-left: auto;
-            margin-right: 2rem;
+            width: 90%;
         }}
 
         .chat-area h1 {{
@@ -71,7 +79,7 @@ def set_layout(background_path, logo_path):
             color: #1A0146;
             letter-spacing: 0.5px;
             margin-bottom: 0.3rem;
-            text-align: right;
+            text-align: center;
         }}
 
         .chat-area p {{
@@ -80,7 +88,7 @@ def set_layout(background_path, logo_path):
             margin-top: 0;
             margin-bottom: 1.5rem;
             text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
-            text-align: right;
+            text-align: center;
         }}
 
         .chat-bubble-user {{
@@ -108,11 +116,12 @@ def set_layout(background_path, logo_path):
         .stChatInputContainer {{
             background-color: transparent !important;
             border-top: none;
-            margin-left: auto;
-            margin-right: 2rem;
             max-width: 700px;
+            width: 90%;
+            margin: 1rem auto 2rem auto;
         }}
         </style>
+        <div class="centered-container">
         """,
         unsafe_allow_html=True
     )
@@ -145,7 +154,8 @@ for msg in st.session_state.messages:
     css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
     st.markdown(f"<div class='{css_class}'>{msg['content']}</div>", unsafe_allow_html=True)
 
-st.markdown('</div>', unsafe_allow_html=True)
+st.markdown('</div>', unsafe_allow_html=True)  # cierre de .chat-area
+st.markdown('</div>', unsafe_allow_html=True)  # cierre de .centered-container
 
 # Entrada de usuario
 prompt = st.chat_input("¿En qué puedo ayudarte?")
