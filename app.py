@@ -5,7 +5,7 @@ import streamlit as st
 from openai import OpenAI
 
 # ✅ Configuración inicial
-st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
+st.set_page_config(page_title="Agente Inteligente CL Tiene Soluciones", layout="centered")
 
 # ======================
 # 🎨 Fondo y barra superior con logo
@@ -126,11 +126,35 @@ with open("cltiene_data.txt", "r", encoding="utf-8") as f:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Encabezado visual
-st.markdown("<h1 style='text-align: center;'>CL Tiene</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
+# ========================
+# 🖼 Encabezado visual mejorado
+# ========================
+st.markdown("""
+<h1 style='
+    text-align: center;
+    font-size: 2.8rem;
+    font-weight: 800;
+    color: #1A0146;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.3rem;
+'>
+    CL Tiene 💙💚❤️
+</h1>
+<p style='
+    text-align: center;
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+'>
+    En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.
+</p>
+""", unsafe_allow_html=True)
 
-# Mostrar historial
+# ===================
+# 💬 Mostrar historial
+# ===================
 for msg in st.session_state.messages:
     css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
     st.markdown(f"<div class='{css_class}'>{msg['content']}</div>", unsafe_allow_html=True)
