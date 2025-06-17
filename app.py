@@ -88,6 +88,8 @@ def set_background(background_path, logo_path, avatar_path):
         .stChatInputContainer {{
             background-color: transparent !important;
             border-top: none;
+            align-items: flex-start !important;
+            text-align: left !important;
         }}
 
         .block-container {{
@@ -125,9 +127,9 @@ set_background("assets/fondo.png", "assets/logo.png", "assets/avatar.png")
 # 💬 Limpieza de respuesta
 # ========================
 def limpiar_respuesta(texto):
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*hasta\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*a\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*-\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
+    texto = re.sub(r'(\d{{2,3}}\.\d{{3}})\s*hasta\s*(\d{{2,3}}\.\d{{3}})', r'$\1 – $\2', texto)
+    texto = re.sub(r'(\d{{2,3}}\.\d{{3}})\s*a\s*(\d{{2,3}}\.\d{{3}})', r'$\1 – $\2', texto)
+    texto = re.sub(r'(\d{{2,3}}\.\d{{3}})\s*-\s*(\d{{2,3}}\.\d{{3}})', r'$\1 – $\2', texto)
     return texto.strip()
 
 # 🔑 Cliente de OpenAI
@@ -141,10 +143,9 @@ with open("cltiene_data.txt", "r", encoding="utf-8") as f:
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 🖼 Encabezado visual estilizado
+# 🖼 Encabezado visual alineado a la izquierda
 st.markdown("""
 <h1 style='
-    text-align: center;
     font-size: 2.8rem;
     font-weight: 800;
     color: #1A0146;
@@ -154,7 +155,6 @@ st.markdown("""
     CL Tiene
 </h1>
 <p style='
-    text-align: center;
     font-size: 1.1rem;
     color: #333;
     margin-top: 0;
