@@ -8,12 +8,19 @@ from openai import OpenAI
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo y barra superior personalizada
+# 🎨 Fondo y barra superior con logo
 # ======================
-def set_background(image_path):
-    with open(image_path, "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data).decode()
+def set_background(background_path, logo_path):
+    # Codificar imagen de fondo
+    with open(background_path, "rb") as f:
+        bg_data = f.read()
+        bg_encoded = base64.b64encode(bg_data).decode()
+
+    # Codificar logo
+    with open(logo_path, "rb") as f:
+        logo_data = f.read()
+        logo_encoded = base64.b64encode(logo_data).decode()
+
     st.markdown(
         f"""
         <style>
@@ -25,7 +32,7 @@ def set_background(image_path):
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/png;base64,{encoded}");
+            background-image: url("data:image/png;base64,{bg_encoded}");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -33,11 +40,26 @@ def set_background(image_path):
             z-index: -1;
         }}
 
-        /* Color barra superior */
+        /* Barra superior personalizada con logo */
         header[data-testid="stHeader"] {{
             background-color: #1b0542;
-            color: white;
+            display: flex;
+            align-items: center;
+            padding-left: 1rem;
         }}
+
+        header[data-testid="stHeader"]::before {{
+            content: '';
+            display: inline-block;
+            background-image: url("data:image/png;base64,{logo_encoded}");
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 40px;
+            width: 40px;
+            margin-right: 10px;
+        }}
+
         header[data-testid="stHeader"] * {{
             color: white;
         }}
@@ -76,8 +98,8 @@ def set_background(image_path):
         unsafe_allow_html=True
     )
 
-# ✅ Aplica fondo desde carpeta assets
-set_background("assets/fondo.png")
+# ✅ Aplica fondo y logo
+set_background("assets/fondo.png", "assets/logo.png")
 
 # ========================
 # 💬 Limpieza de respuesta
@@ -145,3 +167,4 @@ Respuesta:
 
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
