@@ -3,50 +3,46 @@ from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain_openai import OpenAIEmbeddings, OpenAI
 
-# Función mejorada para limpiar y dar formato a la respuesta
+# ✅ Función mejorada para limpiar y dar formato a la respuesta
 def limpiar_texto(texto):
-    # Unifica saltos de línea erróneos
+    # Unifica saltos de línea innecesarios
     texto = texto.replace("\n\n", "\n").replace("\n \n", "\n")
 
-    # Quita saltos de línea entre números
+    # Elimina saltos de línea entre números
     texto = re.sub(r'(\d)\n(\d)', r'\1\2', texto)
     texto = re.sub(r'(\d)\n', r'\1', texto)
     texto = re.sub(r'\n(\d)', r'\1', texto)
 
-    # Elimina cualquier salto entre palabras tipo 'hasta' mal formateado
-    texto = texto.replace("h\na\ns\nt\na", "hasta").replace("H\na\ns\nt\na", "Hasta")
+    # Reemplaza formas rotas de "hasta" escritas verticalmente
+    texto = re.sub(r'(h\s*\n\s*a\s*\n\s*s\s*\n\s*t\s*\n\s*a)', 'hasta', texto, flags=re.IGNORECASE)
 
-    # Reemplaza valores de precio mal formateados solo si están mal escritos
-    # Esta versión NO toca los que ya están bien como:
-    # 💵 Valor:
-    # - Desde $35.900
-    # - Hasta $406.800
+    # Corrige precios mal pegados: 33.900hasta406.800 → $33.900 – $406.800
     texto = re.sub(
         r'(\$?\d{2,3}\.\d{3})\s*(hasta|a|-)\s*(\$?\d{2,3}\.\d{3})',
-        r'\1 – \3',
+        r'$ \1 – $ \3',
         texto,
         flags=re.IGNORECASE
     )
 
-    return texto
+    return texto.strip()
 
-# Cargar el índice FAISS
+# ✅ Cargar el índice FAISS
 vectorstore = FAISS.load_local("cltiene_faiss_index", OpenAIEmbeddings())
 
-# Instanciar el modelo de lenguaje
+# ✅ Instanciar modelo
 llm = OpenAI(temperature=0)
 
-# Crear la cadena de recuperación
+# ✅ Crear cadena de recuperación
 qa_chain = RetrievalQA.from_chain_type(
     llm=llm,
     retriever=vectorstore.as_retriever(),
     chain_type="stuff"
 )
 
-# Pregunta del usuario
+# ✅ Pregunta del usuario
 pregunta = "¿Qué incluye el servicio CL Tiene Mascotas?"
 
-# Prompt con estructura deseada
+# ✅ Prompt estructurado
 prompt = f"""
 Estructura tu respuesta usando estas secciones y emojis. Sé claro, preciso y usa viñetas si es necesario. Si no hay información suficiente, indícalo.
 
@@ -59,19 +55,17 @@ Estructura tu respuesta usando estas secciones y emojis. Sé claro, preciso y us
 ❌ Exclusiones:
 - [Lista de exclusiones, si aplica]
 
-💵 Valor:
+💵 Valor (Costo):
 [Precio con formato claro: $69.900 – $609.900]
 
 Pregunta del usuario: {pregunta}
 """
 
-# Ejecutar consulta
+# ✅ Ejecutar consulta
 respuesta = qa_chain.run(prompt)
 
-# Limpiar respuesta
+# ✅ Limpiar respuesta
 respuesta_limpia = limpiar_texto(respuesta)
 
-# Imprimir
+# ✅ Mostrar resultado limpio
 print(respuesta_limpia)
-
-
