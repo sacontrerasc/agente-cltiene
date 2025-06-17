@@ -11,20 +11,14 @@ st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 # 🎨 Fondo y barra superior con logo
 # ======================
 def set_background(background_path, logo_path):
-    # Codificar imagen de fondo
     with open(background_path, "rb") as f:
-        bg_data = f.read()
-        bg_encoded = base64.b64encode(bg_data).decode()
-
-    # Codificar logo
+        bg_encoded = base64.b64encode(f.read()).decode()
     with open(logo_path, "rb") as f:
-        logo_data = f.read()
-        logo_encoded = base64.b64encode(logo_data).decode()
+        logo_encoded = base64.b64encode(f.read()).decode()
 
     st.markdown(
         f"""
         <style>
-        /* Fondo como capa fija */
         .stApp::before {{
             content: "";
             position: fixed;
@@ -40,7 +34,6 @@ def set_background(background_path, logo_path):
             z-index: -1;
         }}
 
-        /* Barra superior personalizada con logo */
         header[data-testid="stHeader"] {{
             background-color: #1b0542;
             display: flex;
@@ -73,6 +66,7 @@ def set_background(background_path, logo_path):
             width: fit-content;
             max-width: 80%;
             align-self: flex-end;
+            margin-left: auto;
             font-weight: 500;
         }}
 
@@ -85,6 +79,7 @@ def set_background(background_path, logo_path):
             width: fit-content;
             max-width: 80%;
             align-self: flex-start;
+            margin-right: auto;
             font-weight: 400;
         }}
 
