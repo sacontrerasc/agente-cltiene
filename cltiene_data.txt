@@ -12,7 +12,9 @@ Beneficios Incluidos:
 - Servicios destacados: servicios médicos y emergencias en el hogar.
 - Nos comprometemos a proporcionar servicios de alta calidad.
 - En CL Tiene Soluciones buscamos asegurar que encuentres la solución perfecta para tu estilo de vida.
-Precio: $69.900 a $609.900
+Precio: 
+De: $69.900  
+asta: $609.900
 
 CL Tiene Mascotas Esencial (Plan Esencial Mascotas)
 ---------------------------------------------------
@@ -20,7 +22,8 @@ CL Tiene Mascotas Esencial (Plan Esencial Mascotas)
 - Descripción: Servicios orientados a garantizar el bienestar de las mascotas y apoyo en momentos críticos.
 - Donación de $1.000 por cada mascota afiliada a fundaciones de rescate animal.
 - Acceso a red de aliados.
-- Precio por mascota: $33.900 / adicionales: $25.000
+- Precio por mascota: $33.900
+- Adicionales: $25.000
 
 Incluye:
   * Orientación veterinaria telefónica 24/7 ilimitada
@@ -496,7 +499,9 @@ Servicios Disponibles:
 - Instalación de electrodomésticos.
 - Mantenimiento de gasodomésticos.
 - Asistencia de Todero.
-Valor (Costo): Desde $35.900 hasta $430.800
+Valor (Costo): 
+- Desde: $35.900 
+- Hasta: $430.800
 
 Plan Esencial (Mascotas)
 ------------------------------
@@ -514,7 +519,9 @@ Servicios Disponibles:
 - Asistencia emocional por duelo.
 - Apoyo económico por eutanasia ($200.000).
 - Asesoría legal por daños a terceros.
-Valor (Costo): Desde $33.900 hasta $406.800
+Valor (Costo): 
+- Desde $33.900 
+- Hasta $406.800
 
 CL Cuida (Plan Salud)
 ------------------------------
@@ -547,7 +554,9 @@ Servicios Disponibles:
 - Mantenimiento de bicicletas.
 - Asesoría jurídica en accidentes de tránsito.
 - Asesoría legal en impugnación de comparendos.
-Valor (Costo): Desde $31.100 hasta $373.200
+Valor (Costo): 
+- Desde $31.100 
+- Hasta $373.200
 
 CL Conecta (Plan Complementario)
 ------------------------------
@@ -561,7 +570,9 @@ Servicios Disponibles:
 - Asistencia PC.
 - Aseo y limpieza del hogar.
 - Asistencia en bienestar financiero.
-Valor (Costo): Desde $28.900 hasta $346.800
+Valor (Costo): 
+- Desde $28.900 
+- Hasta $346.800
 
 ____________________________________________________________________________________________________________________________________________________________
 

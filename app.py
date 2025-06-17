@@ -8,7 +8,7 @@ from openai import OpenAI
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo fijo en toda la pantalla, incluyendo input (versión corregida)
+# 🎨 Fondo y barra superior personalizada
 # ======================
 def set_background(image_path):
     with open(image_path, "rb") as f:
@@ -17,7 +17,7 @@ def set_background(image_path):
     st.markdown(
         f"""
         <style>
-        /* Fondo fijo para toda la app usando ::before */
+        /* Fondo como capa fija */
         .stApp::before {{
             content: "";
             position: fixed;
@@ -31,6 +31,15 @@ def set_background(image_path):
             background-position: center;
             opacity: 1;
             z-index: -1;
+        }}
+
+        /* Color barra superior */
+        header[data-testid="stHeader"] {{
+            background-color: #1b0542;
+            color: white;
+        }}
+        header[data-testid="stHeader"] * {{
+            color: white;
         }}
 
         .chat-bubble-user {{
@@ -67,7 +76,7 @@ def set_background(image_path):
         unsafe_allow_html=True
     )
 
-# ✅ Aplica el fondo desde carpeta assets
+# ✅ Aplica fondo desde carpeta assets
 set_background("assets/fondo.png")
 
 # ========================
