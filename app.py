@@ -62,7 +62,25 @@ def set_layout(background_path, logo_path):
             border-radius: 20px;
             max-width: 700px;
             margin-left: auto;
-            margin-right: auto;
+            margin-right: 2rem;
+        }}
+
+        .chat-area h1 {{
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1A0146;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.3rem;
+            text-align: right;
+        }}
+
+        .chat-area p {{
+            font-size: 1.1rem;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+            text-align: right;
         }}
 
         .chat-bubble-user {{
@@ -91,7 +109,7 @@ def set_layout(background_path, logo_path):
             background-color: transparent !important;
             border-top: none;
             margin-left: auto;
-            margin-right: auto;
+            margin-right: 2rem;
             max-width: 700px;
         }}
         </style>
@@ -99,7 +117,7 @@ def set_layout(background_path, logo_path):
         unsafe_allow_html=True
     )
 
-# ✅ Aplicar fondo y logo
+# ✅ Aplicar diseño
 set_layout("assets/fondo.png", "assets/logo.png")
 
 # ✅ Cliente OpenAI
@@ -114,30 +132,14 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # ==============================
-# 🧠 Encabezado y chat al centro-derecha
+# 💬 Contenedor del chat con títulos
 # ==============================
-st.markdown("""
-<h1 style='
-    font-size: 2.8rem;
-    font-weight: 800;
-    color: #1A0146;
-    letter-spacing: 0.5px;
-    margin-bottom: 0.3rem;
-    text-align: right;
-    margin-right: 2rem;
-'>CL Tiene</h1>
-<p style='
-    font-size: 1.1rem;
-    color: #333;
-    margin-top: 0;
-    margin-bottom: 1.5rem;
-    text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
-    text-align: right;
-    margin-right: 2rem;
-'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>
-""", unsafe_allow_html=True)
-
 st.markdown('<div class="chat-area">', unsafe_allow_html=True)
+
+st.markdown("""
+<h1>CL Tiene</h1>
+<p>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>
+""", unsafe_allow_html=True)
 
 for msg in st.session_state.messages:
     css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
