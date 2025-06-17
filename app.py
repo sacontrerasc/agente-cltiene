@@ -146,8 +146,12 @@ if "messages" not in st.session_state:
 st.markdown('<div class="chat-area">', unsafe_allow_html=True)
 
 st.markdown("""
-<h1>CL Tiene</h1>
-<p>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>
+<div style='text-align: center;'>
+    <h1 style='font-size: 3rem; font-weight: 800; color: #1A0146; margin-bottom: 0.2rem;'>CL Tiene</h1>
+    <p style='font-size: 1.2rem; color: #333; margin-top: 0;'>
+        En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.
+    </p>
+</div>
 """, unsafe_allow_html=True)
 
 for msg in st.session_state.messages:
