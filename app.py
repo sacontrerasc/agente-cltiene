@@ -4,38 +4,34 @@ import base64
 import streamlit as st
 from openai import OpenAI
 
-# ✅ DEBE IR PRIMERO
+# ✅ Configuración inicial
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo completo en pantalla (incluye barra inferior)
+# 🎨 Fondo fijo en toda la pantalla, incluyendo input
 # ======================
 def set_background(image_path):
     with open(image_path, "rb") as f:
-        data = f.read()
-        encoded = base64.b64encode(data).decode()
+        encoded = base64.b64encode(f.read()).decode()
     st.markdown(
         f"""
         <style>
-        html, body {{
-            height: 100vh;
-            margin: 0;
+        /* Fondo fijo para toda la app usando ::before */
+        .stApp::before {{
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
+            opacity: 1;
+            z-index: -1;
         }}
-        .stApp {{
-            background: transparent;
-        }}
-        .block-container {{
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }}
-        .stChatInputContainer {{
-            background-color: transparent !important;
-            border-top: none;
-        }}
+
         .chat-bubble-user {{
             background-color: #D9EFFF;
             padding: 0.75rem;
@@ -45,6 +41,7 @@ def set_background(image_path):
             max-width: 80%;
             align-self: flex-end;
         }}
+
         .chat-bubble-assistant {{
             background-color: #F1F3F4;
             padding: 0.75rem;
@@ -54,12 +51,22 @@ def set_background(image_path):
             max-width: 80%;
             align-self: flex-start;
         }}
+
+        .stChatInputContainer {{
+            background-color: transparent !important;
+            border-top: none;
+        }}
+
+        .block-container {{
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }}
         </style>
         """,
         unsafe_allow_html=True
     )
 
-# ✅ Aplica fondo desde assets
+# ✅ Aplica el fondo desde carpeta assets
 set_background("assets/fondo.png")
 
 # ========================
@@ -92,7 +99,7 @@ if "messages" not in st.session_state:
 st.markdown("<h1 style='text-align: center;'>🤖 Agente Inteligente CL Tiene</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
 
-# Mostrar mensajes previos con estilo burbuja
+# Mostrar historial
 for msg in st.session_state.messages:
     css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
     st.markdown(f"<div class='{css_class}'>{msg['content']}</div>", unsafe_allow_html=True)
@@ -128,3 +135,4 @@ Respuesta:
 
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
