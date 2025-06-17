@@ -55,8 +55,8 @@ def set_background(background_path, logo_path):
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            height: 70px;
-            width: 70px;
+            height: 80px;
+            width: 80px;
             margin-right: 10px;
         }}
 
@@ -128,7 +128,7 @@ if "messages" not in st.session_state:
     st.session_state.messages = []
 
 # Encabezado visual
-st.markdown("<h1 style='text-align: center;'>🤖 Agente Inteligente CL Tiene</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>CL Tiene</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
 
 # Mostrar historial
