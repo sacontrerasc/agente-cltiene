@@ -4,19 +4,16 @@ import base64
 import streamlit as st
 from openai import OpenAI
 
-# ✅ Configuración inicial
-st.set_page_config(page_title="Agente Inteligente CL Tiene Soluciones", layout="centered")
+st.set_page_config(page_title="Agente Inteligente CL Tiene Soluciones", layout="wide")
 
 # ======================
-# 🎨 Fondo, barra superior y avatar a la izquierda
+# 🎨 Fondo y barra superior con logo
 # ======================
-def set_background(background_path, logo_path, avatar_path):
+def set_layout(background_path, logo_path):
     with open(background_path, "rb") as f:
         bg_encoded = base64.b64encode(f.read()).decode()
     with open(logo_path, "rb") as f:
         logo_encoded = base64.b64encode(f.read()).decode()
-    with open(avatar_path, "rb") as f:
-        avatar_encoded = base64.b64encode(f.read()).decode()
 
     st.markdown(
         f"""
@@ -59,17 +56,24 @@ def set_background(background_path, logo_path, avatar_path):
             color: white;
         }}
 
+        .chat-area {{
+            background: rgba(255,255,255,0.85);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }}
+
         .chat-bubble-user {{
             background: linear-gradient(135deg, #3E78DD, #00828F);
             color: white;
             padding: 0.75rem;
             border-radius: 1rem;
             margin: 0.5rem 0;
-            width: fit-content;
-            max-width: 80%;
-            align-self: flex-end;
-            margin-left: auto;
+            max-width: 90%;
             font-weight: 500;
+            margin-left: auto;
         }}
 
         .chat-bubble-assistant {{
@@ -78,99 +82,70 @@ def set_background(background_path, logo_path, avatar_path):
             padding: 0.75rem;
             border-radius: 1rem;
             margin: 0.5rem 0;
-            width: fit-content;
-            max-width: 80%;
-            align-self: flex-start;
-            margin-right: auto;
+            max-width: 90%;
             font-weight: 400;
+            margin-right: auto;
         }}
 
         .stChatInputContainer {{
             background-color: transparent !important;
             border-top: none;
-        }}
-
-        .block-container {{
-            padding-top: 2rem;
-            padding-bottom: 2rem;
-        }}
-
-        .avatar-container {{
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            padding: 20px;
-            z-index: 2;
-        }}
-
-        .avatar-container img {{
-            height: 90vh;
-            width: auto;
-            max-height: 90vh;
-            object-fit: contain;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 700px;
         }}
         </style>
-
-        <div class="avatar-container">
-            <img src="data:image/png;base64,{avatar_encoded}" alt="Asistente virtual CL Tiene" />
-        </div>
         """,
         unsafe_allow_html=True
     )
 
-# ✅ Aplica fondo, logo y avatar
-set_background("assets/fondo.png", "assets/logo.png", "assets/avatar.png")
+# ✅ Aplicar fondo y logo
+set_layout("assets/fondo.png", "assets/logo.png")
 
-# ========================
-# 💬 Limpieza de respuesta
-# ========================
-def limpiar_respuesta(texto):
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*hasta\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*a\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
-    texto = re.sub(r'(\d{2,3}\.\d{3})\s*-\s*(\d{2,3}\.\d{3})', r'$\1 – $\2', texto)
-    return texto.strip()
-
-# 🔑 Cliente de OpenAI
+# ✅ Cliente OpenAI
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-# 📄 Cargar contexto base
+# ✅ Cargar contexto
 with open("cltiene_data.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
-# 🧠 Historial de conversación
+# ✅ Historial de conversación
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 🖼 Encabezado visual estilizado
+# ==============================
+# 🧠 Encabezado y chat al centro-derecha
+# ==============================
 st.markdown("""
 <h1 style='
-    text-align: center;
     font-size: 2.8rem;
     font-weight: 800;
     color: #1A0146;
     letter-spacing: 0.5px;
     margin-bottom: 0.3rem;
-'>
-    CL Tiene
-</h1>
+    text-align: right;
+    margin-right: 2rem;
+'>CL Tiene</h1>
 <p style='
-    text-align: center;
     font-size: 1.1rem;
     color: #333;
     margin-top: 0;
     margin-bottom: 1.5rem;
     text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
-'>
-    En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.
-</p>
+    text-align: right;
+    margin-right: 2rem;
+'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>
 """, unsafe_allow_html=True)
 
-# 💬 Mostrar historial de mensajes
+st.markdown('<div class="chat-area">', unsafe_allow_html=True)
+
 for msg in st.session_state.messages:
     css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
     st.markdown(f"<div class='{css_class}'>{msg['content']}</div>", unsafe_allow_html=True)
 
-# ✍️ Entrada del usuario
+st.markdown('</div>', unsafe_allow_html=True)
+
+# Entrada de usuario
 prompt = st.chat_input("¿En qué puedo ayudarte?")
 if prompt:
     st.markdown(f"<div class='chat-bubble-user'>{prompt}</div>", unsafe_allow_html=True)
@@ -192,8 +167,7 @@ Respuesta:
             temperature=0.2,
             max_tokens=700
         )
-        raw_answer = response.choices[0].message.content
-        answer = limpiar_respuesta(raw_answer)
+        answer = response.choices[0].message.content
     except Exception as e:
         answer = f"❌ Error al generar respuesta: {e}"
 
