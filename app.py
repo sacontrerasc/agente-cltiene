@@ -8,7 +8,7 @@ from openai import OpenAI
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo personalizado (pantalla completa)
+# 🎨 Fondo completo en pantalla (incluye barra inferior)
 # ======================
 def set_background(image_path):
     with open(image_path, "rb") as f:
@@ -17,12 +17,16 @@ def set_background(image_path):
     st.markdown(
         f"""
         <style>
-        html, body, .stApp {{
+        html, body {{
+            height: 100vh;
+            margin: 0;
             background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
-            background-position: center;
             background-repeat: no-repeat;
-            height: 100%;
+            background-position: center;
+        }}
+        .stApp {{
+            background: transparent;
         }}
         .block-container {{
             padding-top: 2rem;
@@ -30,6 +34,7 @@ def set_background(image_path):
         }}
         .stChatInputContainer {{
             background-color: transparent !important;
+            border-top: none;
         }}
         .chat-bubble-user {{
             background-color: #D9EFFF;
@@ -54,7 +59,7 @@ def set_background(image_path):
         unsafe_allow_html=True
     )
 
-# ✅ Aplica el fondo desde assets
+# ✅ Aplica fondo desde assets
 set_background("assets/fondo.png")
 
 # ========================
@@ -67,7 +72,7 @@ def limpiar_respuesta(texto):
     return texto.strip()
 
 # =====================
-# 🔑 Cliente OpenAI
+# 🔑 Cliente de OpenAI
 # =====================
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
@@ -78,7 +83,7 @@ with open("cltiene_data.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
 # ============================
-# 🧠 Historial del chat
+# 🧠 Historial de conversación
 # ============================
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -97,11 +102,9 @@ for msg in st.session_state.messages:
 # ===================
 prompt = st.chat_input("¿En qué puedo ayudarte?")
 if prompt:
-    # Mostrar mensaje del usuario
     st.markdown(f"<div class='chat-bubble-user'>{prompt}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
-    # Construcción del prompt con contexto
     full_prompt = f"""
 Eres un agente de atención virtual de CL Tiene. Usa exclusivamente la información del siguiente contexto para responder preguntas de usuarios. Organiza tu respuesta en secciones claras: Información general, Incluye, Exclusiones y Valor. Usa emojis para destacar cada sección y responde de forma amigable y profesional.
 
@@ -111,7 +114,6 @@ Pregunta del usuario: {prompt}
 Respuesta:
 """
 
-    # Obtener respuesta
     try:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -124,8 +126,5 @@ Respuesta:
     except Exception as e:
         answer = f"❌ Error al generar respuesta: {e}"
 
-    # Mostrar respuesta del asistente
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
-
-
