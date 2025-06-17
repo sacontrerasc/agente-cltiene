@@ -13,8 +13,8 @@ Beneficios Incluidos:
 - Nos comprometemos a proporcionar servicios de alta calidad.
 - En CL Tiene Soluciones buscamos asegurar que encuentres la solución perfecta para tu estilo de vida.
 Precio: 
-De: $69.900  
-asta: $609.900
+- De: $69.900  
+- Hasta: $609.900
 
 CL Tiene Mascotas Esencial (Plan Esencial Mascotas)
 ---------------------------------------------------
@@ -499,7 +499,7 @@ Servicios Disponibles:
 - Instalación de electrodomésticos.
 - Mantenimiento de gasodomésticos.
 - Asistencia de Todero.
-Valor (Costo): 
+Precio: 
 - Desde: $35.900 
 - Hasta: $430.800
 
@@ -519,7 +519,7 @@ Servicios Disponibles:
 - Asistencia emocional por duelo.
 - Apoyo económico por eutanasia ($200.000).
 - Asesoría legal por daños a terceros.
-Valor (Costo): 
+Precio: 
 - Desde $33.900 
 - Hasta $406.800
 
@@ -537,7 +537,7 @@ Servicios Disponibles:
 - Exámenes básicos de laboratorio.
 - Consulta con médico especialista.
 - Terapias físicas y respiratorias.
-Valor (Costo): $39.000 por titular; $31.900 por persona adicional (hasta tres beneficiarios)
+Precio: $39.000 por titular; $31.900 por persona adicional (hasta tres beneficiarios)
 
 CL Mueve (Plan Vial)
 ------------------------------
@@ -554,7 +554,7 @@ Servicios Disponibles:
 - Mantenimiento de bicicletas.
 - Asesoría jurídica en accidentes de tránsito.
 - Asesoría legal en impugnación de comparendos.
-Valor (Costo): 
+Precio: 
 - Desde $31.100 
 - Hasta $373.200
 
@@ -570,7 +570,7 @@ Servicios Disponibles:
 - Asistencia PC.
 - Aseo y limpieza del hogar.
 - Asistencia en bienestar financiero.
-Valor (Costo): 
+Precio: 
 - Desde $28.900 
 - Hasta $346.800
 
@@ -580,82 +580,82 @@ EXPERIENCIAS
 1. Hidroterapia
 •	Descripción: Sesión de hidroterapia para relajación y bienestar físico.
 •	Servicios incluidos: Acceso a instalaciones especializadas en hidroterapia.
-•	Valor: $124.900 
+•	Precio: $124.900 
 
 2. Polígono de Tiro
 •	Descripción: Experiencia de práctica de tiro en un polígono especializado.
 •	Servicios incluidos: Uso de armas y municiones bajo supervisión profesional.
-•	Valor: $359.900 
+•	Precio: $359.900 
 
 3. Casa Kalathea
 •	Descripción: Estadía en una casa campestre rodeada de naturaleza.
 •	Servicios incluidos: Alojamiento y acceso a áreas recreativas.
-•	Valor: $120.000
+•	Precio: $120.000
 
 4. Glamping Terra Jacuzzi
 •	Descripción: Alojamiento de lujo en glamping con jacuzzi privado.
 •	Servicios incluidos: Estadía en carpa equipada y acceso a jacuzzi.
-•	Valor: $519.900 
+•	Precio: $519.900 
 
 5. Glamping Safari
 •	Descripción: Experiencia de glamping estilo safari en entorno natural.
 •	Servicios incluidos: Alojamiento en carpa temática y actividades al aire libre.
-•	Valor: $289.900
+•	Precio: $289.900
 
 6. Cabaña Brisa Tropical
 •	Descripción: Estadía en cabaña con ambiente tropical.
 •	Servicios incluidos: Alojamiento y acceso a zonas recreativas.
-•	Valor: Consultar disponibilidad y precio.
+•	Precio: Consultar disponibilidad y precio.
 
 7. Glamping Arrecife
 •	Descripción: Alojamiento en glamping con temática marina.
 •	Servicios incluidos: Estadía en carpa decorada y actividades relacionadas.
-•	Valor: $484.900 
+•	Precio: $484.900 
 
 8. Clase de Coctelería
 •	Descripción: Taller práctico para aprender a preparar cócteles.
 •	Servicios incluidos: Instrucción profesional y degustación de bebidas.
-•	Valor: $189.900
+•	Precio: $189.900
 
 9. Clases de Sushi
 •	Descripción: Curso para aprender a preparar sushi.
 •	Servicios incluidos: Materiales, ingredientes y guía de chef especializado.
-•	Valor: $199.900
+•	Precio: $199.900
 
 10. Flores Comestibles
 •	Descripción: Taller sobre el uso de flores comestibles en la cocina.
 •	Servicios incluidos: Degustación y preparación de platos con flores.
-•	Valor: $129.900
+•	Precio: $129.900
 
 11. Chef en Casa
 •	Descripción: Servicio de chef profesional que cocina en tu hogar.
 •	Servicios incluidos: Preparación de menú personalizado y servicio en casa.
-•	Valor: $120.000
+•	Precio: $120.000
 
 12. Taller de Pintura
 •	Descripción: Sesión artística para desarrollar habilidades en pintura.
 •	Servicios incluidos: Materiales y guía de instructor.
-•	Valor: Consultar disponibilidad y precio.
+•	Precio: Consultar disponibilidad y precio.
 
 13. Cabalgatas
 •	Descripción: Paseo a caballo por rutas escénicas.
 •	Servicios incluidos: Guía, equipo de seguridad y recorrido.
-•	Valor: $165.900
+•	Precio: $165.900
 
 14. Caminata
 •	Descripción: Excursión guiada por senderos naturales.
 •	Servicios incluidos: Guía profesional y refrigerios.
-•	Valor: $120.000
+•	Precio: $120.000
 
 15. Paseo en Vela
 •	Descripción: Experiencia de navegación en velero.
 •	Servicios incluidos: Tripulación, equipo de seguridad y recorrido.
-•	Valor: $499.900 
+•	Precio: $499.900 
 
 16. Eventos Empresariales
 •	Descripción: Organización de eventos corporativos personalizados.
 •	Servicios incluidos: Planificación, logística y ejecución del evento.
-•	Valor: $139.091
+•	Precio: $139.091
 
 CL TIENE MOBILE
 Descripción: Servicio especializado en la reparación de teléfonos móviles sin necesidad de que salgas de casa. CL Tiene Mobile se encarga de recoger tu dispositivo, repararlo y devolvértelo en óptimas condiciones, brindando comodidad y eficiencia.
@@ -674,7 +674,7 @@ o	Pruebas de funciones.
 o	Reemplazo de piezas como carcasa frontal, cubierta posterior, cámara, vibrador, micrófono, altavoz, receptor, antena y otros componentes internos.
 •	Nivel 2:
 o	Reemplazo de componentes internos como placa base, pantalla LCD/TP, placa secundaria, entre otros.
-Valor (Costo): El costo varía según el diagnóstico y la reparación requerida. Se recomienda contactar directamente para obtener una cotización personalizada.
+Precio: El costo varía según el diagnóstico y la reparación requerida. Se recomienda contactar directamente para obtener una cotización personalizada.
 
 
 
