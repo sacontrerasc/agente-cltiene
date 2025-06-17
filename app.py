@@ -4,6 +4,9 @@ import base64
 import streamlit as st
 from openai import OpenAI
 
+# ✅ DEBE SER LA PRIMERA INSTRUCCIÓN DE STREAMLIT
+st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
+
 # ======================
 # 🎨 Fondo personalizado
 # ======================
@@ -67,17 +70,14 @@ with open("cltiene_data.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
 # ============================
-# ⚙️ Configuración de la app
+# 🧠 Historial de conversación
 # ============================
-st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
-st.markdown("<h1 style='text-align: center;'>🤖 Agente Inteligente CL Tiene</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
-
-# ====================
-# 🧠 Historial de chat
-# ====================
 if "messages" not in st.session_state:
     st.session_state.messages = []
+
+# Encabezado
+st.markdown("<h1 style='text-align: center;'>🤖 Agente Inteligente CL Tiene</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
 
 # Mostrar historial con burbujas
 for msg in st.session_state.messages:
@@ -115,3 +115,4 @@ Respuesta:
 
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
