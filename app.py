@@ -72,7 +72,6 @@ def set_layout(background_path, logo_path, avatar_path):
             background: rgba(255,255,255,0.7);
             padding: 2rem;
             border-radius: 20px;
-            border: 2px solid #6C38B1;
             max-width: 700px;
             margin-left: auto;
         }}
@@ -142,6 +141,7 @@ with col2:
         color: #1A0146;
         letter-spacing: 0.5px;
         margin-bottom: 0.3rem;
+        text-align: left;
     '>CL Tiene</h1>
     <p style='
         font-size: 1.1rem;
@@ -149,6 +149,7 @@ with col2:
         margin-top: 0;
         margin-bottom: 1.5rem;
         text-shadow: 0px 0px 2px rgba(0,0,0,0.1);
+        text-align: left;
     '>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>
     """, unsafe_allow_html=True)
 
@@ -187,3 +188,4 @@ Respuesta:
 
         st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
         st.session_state.messages.append({"role": "assistant", "content": answer})
+
