@@ -55,8 +55,8 @@ def set_background(background_path, logo_path):
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            height: 90px;
-            width: 90px;
+            height: 70px;
+            width: 70px;
             margin-right: 10px;
         }}
 
@@ -65,23 +65,27 @@ def set_background(background_path, logo_path):
         }}
 
         .chat-bubble-user {{
-            background-color: #D9EFFF;
+            background: linear-gradient(135deg, #3E78DD, #00828F);
+            color: white;
             padding: 0.75rem;
             border-radius: 1rem;
             margin: 0.5rem 0;
             width: fit-content;
             max-width: 80%;
             align-self: flex-end;
+            font-weight: 500;
         }}
 
         .chat-bubble-assistant {{
-            background-color: #F1F3F4;
+            background-color: #1A0146;
+            color: white;
             padding: 0.75rem;
             border-radius: 1rem;
             margin: 0.5rem 0;
             width: fit-content;
             max-width: 80%;
             align-self: flex-start;
+            font-weight: 400;
         }}
 
         .stChatInputContainer {{
@@ -167,4 +171,3 @@ Respuesta:
 
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
-
