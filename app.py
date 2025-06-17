@@ -97,15 +97,17 @@ def set_background(background_path, logo_path, avatar_path):
 
         .avatar-container {{
             position: fixed;
-            bottom: 100px;
-            left: 30px;
+            bottom: 0;
+            left: 0;
+            padding: 20px;
             z-index: 2;
         }}
 
         .avatar-container img {{
-            width: 160px;
-            max-width: 100%;
-            height: auto;
+            height: 90vh;
+            width: auto;
+            max-height: 90vh;
+            object-fit: contain;
         }}
         </style>
 
