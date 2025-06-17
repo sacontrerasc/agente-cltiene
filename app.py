@@ -4,11 +4,11 @@ import base64
 import streamlit as st
 from openai import OpenAI
 
-# ✅ DEBE SER LA PRIMERA INSTRUCCIÓN DE STREAMLIT
+# ✅ DEBE IR PRIMERO
 st.set_page_config(page_title="Agente Inteligente CL Tiene", layout="centered")
 
 # ======================
-# 🎨 Fondo personalizado
+# 🎨 Fondo personalizado (pantalla completa)
 # ======================
 def set_background(image_path):
     with open(image_path, "rb") as f:
@@ -17,11 +17,19 @@ def set_background(image_path):
     st.markdown(
         f"""
         <style>
-        .stApp {{
+        html, body, .stApp {{
             background-image: url("data:image/png;base64,{encoded}");
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            height: 100%;
+        }}
+        .block-container {{
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }}
+        .stChatInputContainer {{
+            background-color: transparent !important;
         }}
         .chat-bubble-user {{
             background-color: #D9EFFF;
@@ -46,7 +54,7 @@ def set_background(image_path):
         unsafe_allow_html=True
     )
 
-# ✅ Aplica fondo desde carpeta assets
+# ✅ Aplica el fondo desde assets
 set_background("assets/fondo.png")
 
 # ========================
@@ -59,39 +67,41 @@ def limpiar_respuesta(texto):
     return texto.strip()
 
 # =====================
-# 🔑 Cliente de OpenAI
+# 🔑 Cliente OpenAI
 # =====================
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # ======================
-# 📄 Cargar datos base
+# 📄 Cargar contexto base
 # ======================
 with open("cltiene_data.txt", "r", encoding="utf-8") as f:
     contexto = f.read()
 
 # ============================
-# 🧠 Historial de conversación
+# 🧠 Historial del chat
 # ============================
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Encabezado
+# Encabezado visual
 st.markdown("<h1 style='text-align: center;'>🤖 Agente Inteligente CL Tiene</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>En CL Tiene Soluciones, te ofrecemos respaldo cuando más lo necesitas.</p>", unsafe_allow_html=True)
 
-# Mostrar historial con burbujas
+# Mostrar mensajes previos con estilo burbuja
 for msg in st.session_state.messages:
-    role_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
-    st.markdown(f"<div class='{role_class}'>{msg['content']}</div>", unsafe_allow_html=True)
+    css_class = "chat-bubble-user" if msg["role"] == "user" else "chat-bubble-assistant"
+    st.markdown(f"<div class='{css_class}'>{msg['content']}</div>", unsafe_allow_html=True)
 
 # ===================
-# ✍️ Entrada de usuario
+# ✍️ Entrada del usuario
 # ===================
 prompt = st.chat_input("¿En qué puedo ayudarte?")
 if prompt:
+    # Mostrar mensaje del usuario
     st.markdown(f"<div class='chat-bubble-user'>{prompt}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "user", "content": prompt})
 
+    # Construcción del prompt con contexto
     full_prompt = f"""
 Eres un agente de atención virtual de CL Tiene. Usa exclusivamente la información del siguiente contexto para responder preguntas de usuarios. Organiza tu respuesta en secciones claras: Información general, Incluye, Exclusiones y Valor. Usa emojis para destacar cada sección y responde de forma amigable y profesional.
 
@@ -101,6 +111,7 @@ Pregunta del usuario: {prompt}
 Respuesta:
 """
 
+    # Obtener respuesta
     try:
         response = client.chat.completions.create(
             model="gpt-3.5-turbo",
@@ -113,6 +124,8 @@ Respuesta:
     except Exception as e:
         answer = f"❌ Error al generar respuesta: {e}"
 
+    # Mostrar respuesta del asistente
     st.markdown(f"<div class='chat-bubble-assistant'>{answer}</div>", unsafe_allow_html=True)
     st.session_state.messages.append({"role": "assistant", "content": answer})
+
 
