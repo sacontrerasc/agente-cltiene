@@ -55,8 +55,8 @@ def set_background(background_path, logo_path):
             background-size: contain;
             background-repeat: no-repeat;
             background-position: center;
-            height: 80px;
-            width: 80px;
+            height: 90px;
+            width: 90px;
             margin-right: 10px;
         }}
 
